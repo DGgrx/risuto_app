@@ -27,7 +27,7 @@ fun OnBoardingPage(
     page: Page
 ) {
     Column(
-
+        modifier = modifier
     ) {
         Image(
             modifier = Modifier

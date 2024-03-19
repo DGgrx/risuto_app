@@ -28,7 +28,9 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun OnBoardingScreen() {
+fun OnBoardingScreen(
+    onEvent: (OnBoardingEvent) -> Unit
+) {
     Column(modifier = Modifier.fillMaxHeight()) {
         val pagerState = rememberPagerState(initialPage = 0) {
             pages.size
@@ -75,13 +77,13 @@ fun OnBoardingScreen() {
             }
             RisutoButton(text = buttonState.value[1], onclick = {
                 scope.launch {
-                    if(pagerState.currentPage<2) {
-                        pagerState.animateScrollToPage(page = pagerState.currentPage + 1)
-                    }
-                    else{
-                        //TODO
-                    }
-                }
+                    if (pagerState.currentPage == 2) {
+                        onEvent(OnBoardingEvent.SaveAppEntry)
+                    } else {
+                        pagerState.animateScrollToPage(
+                            page = pagerState.currentPage + 1
+                        )
+                    }}
             })
 
         }
