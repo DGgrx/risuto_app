@@ -6,7 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.jumping_minds_assignment.domain.usecases.app_entry.AppEntryUseCases
-import com.example.jumping_minds_assignment.presentation.navgraph.Route
+import com.example.jumping_minds_assignment.ui.navgraph.Route
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
