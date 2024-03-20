@@ -2,7 +2,7 @@ package com.example.jumping_minds_assignment.presentation.onboarding
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.jumping_minds_assignment.domain.usecases.AppEntryUseCases
+import com.example.jumping_minds_assignment.domain.usecases.app_entry.AppEntryUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

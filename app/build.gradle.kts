@@ -72,12 +72,22 @@ dependencies {
     val nav_version = "2.7.7"
     implementation("androidx.navigation:navigation-compose:$nav_version")
 
-    // Activity for EdgetoEdge System UI
-    val activity_version = "1.8.2"
-    implementation("androidx.activity:activity-ktx:$activity_version")
-
     // Accompanist
     implementation("com.google.accompanist:accompanist-systemuicontroller:0.35.0-alpha")
+
+
+    //Retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.10.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.10.0")
+
+    // Paging 3
+    val paging_version = "3.2.1"
+    implementation("androidx.paging:paging-runtime:$paging_version")
+    implementation("androidx.paging:paging-compose:3.3.0-alpha04")
+
+    // Coil for Loading images using coroutines
+    implementation("io.coil-kt:coil-compose:2.6.0")
+
 
 
     // Jetpack Compose

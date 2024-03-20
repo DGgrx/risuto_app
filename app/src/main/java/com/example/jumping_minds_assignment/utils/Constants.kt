@@ -6,4 +6,6 @@ object Constants {
 
     const val APP_ENTRY = "appEntry"
 
+    const val BASE_URL = "https://api.jikan.moe/v4/"
+
 }

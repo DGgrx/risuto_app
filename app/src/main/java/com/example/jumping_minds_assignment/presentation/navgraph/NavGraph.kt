@@ -1,12 +1,14 @@
 package com.example.jumping_minds_assignment.presentation.navgraph
 
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
+import androidx.paging.compose.collectAsLazyPagingItems
+import com.example.jumping_minds_assignment.presentation.home.HomeScreen
+import com.example.jumping_minds_assignment.presentation.home.HomeViewModel
 import com.example.jumping_minds_assignment.presentation.onboarding.OnBoardingScreen
 import com.example.jumping_minds_assignment.presentation.onboarding.OnBoardingViewModel
 
@@ -33,7 +35,15 @@ fun NavGraph(
             startDestination = Route.AnimeNavigationScreen.route
         ) {
             composable(route = Route.AnimeNavigationScreen.route) {
-                Text(text = "AnimeNavigationScreen")
+                val viewModel : HomeViewModel = hiltViewModel()
+                val animes = viewModel.topAnimes.collectAsLazyPagingItems()
+                HomeScreen(
+                    animes = animes,
+//                    state = ,
+//                    event = ,
+                    navigateToSearch = { },
+                    navigateToDetails = {}
+                )
             }
         }
 

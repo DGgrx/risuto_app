@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.jumping_minds_assignment.domain.usecases.AppEntryUseCases
+import com.example.jumping_minds_assignment.domain.usecases.app_entry.AppEntryUseCases
 import com.example.jumping_minds_assignment.presentation.navgraph.Route
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
