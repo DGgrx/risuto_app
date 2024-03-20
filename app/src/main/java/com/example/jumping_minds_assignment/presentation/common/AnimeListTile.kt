@@ -90,7 +90,7 @@ fun AnimeListTile(
             Spacer(modifier = Modifier.height(5.dp))
 
             RisutoButton(
-                icon = R.drawable.favourite_marked,
+                icon = R.drawable.ic_favourite_marked,
                 text = "My List"
             ) {
 

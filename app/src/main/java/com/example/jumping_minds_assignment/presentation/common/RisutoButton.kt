@@ -16,11 +16,12 @@ import com.example.jumping_minds_assignment.presentation.Dimens.HorizontalPaddin
 
 @Composable
 fun RisutoButton(
+    modifier: Modifier = Modifier,
     icon: Int? = null,
     text: String,
     onclick: () -> Unit
 ) {
-    Button(onClick = onclick) {
+    Button(modifier = modifier,onClick = onclick) {
 
 
         Row(verticalAlignment = Alignment.CenterVertically) {

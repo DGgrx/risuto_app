@@ -23,8 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    val viewModel by viewModels<MainActivityViewModel>()
-
+    private val viewModel by viewModels<MainActivityViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +35,7 @@ class MainActivity : ComponentActivity() {
                 viewModel.splashCondition
             }
         }
+
 
         setContent {
             Jumping_minds_assignmentTheme {

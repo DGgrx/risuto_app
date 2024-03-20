@@ -54,13 +54,36 @@ class AppModule {
     fun providesAnimeRepository(animeApi: AnimeApi): AnimeRepository =
         AnimeRepositoryImpl(animeApi = animeApi)
 
+//    @Provides
+//    @Singleton
+//    fun providesAnimeUseCases(animeRepository: AnimeRepository): AnimeUseCases {
+//        return AnimeUseCases(
+//            getTopAnime = GetTopAnime(animeRepository = animeRepository),
+//            searchAnime = SearchAnime(animeRepository = animeRepository)
+//        )
+//    }
+
+
+
+
     @Provides
     @Singleton
-    fun providesAnimeUseCases(animeRepository: AnimeRepository): AnimeUseCases {
+    fun providesAnimeUseCases(getTopAnime: GetTopAnime,searchAnime:SearchAnime ): AnimeUseCases {
         return AnimeUseCases(
-            getTopAnime = GetTopAnime(animeRepository = animeRepository),
-            searchAnime = SearchAnime(animeRepository = animeRepository)
+            getTopAnime = getTopAnime,
+            searchAnime = searchAnime
         )
     }
 
+    @Provides
+    @Singleton
+    fun providesGetTopAnime(animeRepository: AnimeRepository): GetTopAnime {
+        return GetTopAnime(animeRepository)
+    }
+
+    @Provides
+    @Singleton
+    fun providesSearchAnime(animeRepository: AnimeRepository): SearchAnime {
+        return SearchAnime(animeRepository)
+    }
 }

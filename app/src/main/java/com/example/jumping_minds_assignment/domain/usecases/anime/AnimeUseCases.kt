@@ -4,3 +4,4 @@ data class AnimeUseCases(
     val getTopAnime: GetTopAnime,
     val searchAnime: SearchAnime
 )
+
