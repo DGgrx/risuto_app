@@ -12,4 +12,10 @@ interface AnimeApi {
         @Query("limit") limit :Int = 20
     ): AnimeResponse
 
+    @GET("anime")
+    suspend fun searchAnime(
+        @Query("page") page: Int,
+        @Query("q") searchQuery: String
+    ):AnimeResponse
+
 }

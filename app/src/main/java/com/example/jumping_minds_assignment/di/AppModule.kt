@@ -8,6 +8,7 @@ import com.example.jumping_minds_assignment.domain.manger.LocalUserManger
 import com.example.jumping_minds_assignment.domain.repository.AnimeRepository
 import com.example.jumping_minds_assignment.domain.usecases.anime.AnimeUseCases
 import com.example.jumping_minds_assignment.domain.usecases.anime.GetTopAnime
+import com.example.jumping_minds_assignment.domain.usecases.anime.SearchAnime
 import com.example.jumping_minds_assignment.domain.usecases.app_entry.AppEntryUseCases
 import com.example.jumping_minds_assignment.domain.usecases.app_entry.ReadAppEntry
 import com.example.jumping_minds_assignment.domain.usecases.app_entry.SaveAppEntry
@@ -57,7 +58,8 @@ class AppModule {
     @Singleton
     fun providesAnimeUseCases(animeRepository: AnimeRepository): AnimeUseCases {
         return AnimeUseCases(
-            getTopAnime = GetTopAnime(animeRepository = animeRepository)
+            getTopAnime = GetTopAnime(animeRepository = animeRepository),
+            searchAnime = SearchAnime(animeRepository = animeRepository)
         )
     }
 

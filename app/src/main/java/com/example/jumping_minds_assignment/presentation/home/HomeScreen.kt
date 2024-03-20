@@ -15,18 +15,18 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.paging.compose.LazyPagingItems
 import com.example.jumping_minds_assignment.R
-import com.example.jumping_minds_assignment.domain.models.Data
+import com.example.jumping_minds_assignment.domain.models.Anime
 import com.example.jumping_minds_assignment.presentation.Dimens.MediumPadding1
 import com.example.jumping_minds_assignment.presentation.common.AnimeList
 import com.example.jumping_minds_assignment.presentation.common.SearchBar
 
 @Composable
 fun HomeScreen(
-    animes: LazyPagingItems<Data>,
+    animes: LazyPagingItems<Anime>,
 //    state: HomeState,
 //    event: (HomeEvent) -> Unit,
     navigateToSearch: () -> Unit,
-    navigateToDetails: (Data) -> Unit
+    navigateToDetails: (Anime) -> Unit
 ) {
 
 //    val titles by remember {

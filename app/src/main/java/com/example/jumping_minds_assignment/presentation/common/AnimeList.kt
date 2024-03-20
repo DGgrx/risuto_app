@@ -10,15 +10,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
-import com.example.jumping_minds_assignment.domain.models.Data
+import com.example.jumping_minds_assignment.domain.models.Anime
 import com.example.jumping_minds_assignment.presentation.Dimens.ExtraSmallPadding2
 import com.example.jumping_minds_assignment.presentation.Dimens.MediumPadding1
 
 @Composable
 fun AnimeList(
     modifier: Modifier = Modifier,
-    animes: List<Data>,
-    onClick: (Data) -> Unit
+    animes: List<Anime>,
+    onClick: (Anime) -> Unit
 ) {
     if (animes.isEmpty()) {
         EmptyScreen()
@@ -44,8 +44,8 @@ fun AnimeList(
 @Composable
 fun AnimeList(
     modifier: Modifier = Modifier,
-    animes: LazyPagingItems<Data>,
-    onClick: (Data) -> Unit
+    animes: LazyPagingItems<Anime>,
+    onClick: (Anime) -> Unit
 ) {
 
     val handlePagingResult = handlePagingResult(animes)
@@ -72,7 +72,7 @@ fun AnimeList(
 }
 
 @Composable
-fun handlePagingResult(animes: LazyPagingItems<Data>): Boolean {
+fun handlePagingResult(animes: LazyPagingItems<Anime>): Boolean {
     val loadState = animes.loadState
     val error = when {
         loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error

@@ -4,16 +4,22 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.jumping_minds_assignment.domain.models.Anime
 
-class AnimePagingSource(
+class SearchAnimePagingSource (
     private val animeApi: AnimeApi,
-) : PagingSource<Int, Anime>() {
-
+    private val searchQuery: String
+):PagingSource<Int,Anime>(){
+    override fun getRefreshKey(state: PagingState<Int, Anime>): Int? {
+        return state.anchorPosition?.let { anchorPosition ->
+            val anchorPage = state.closestPageToPosition(anchorPosition)
+            anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
+        }
+    }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Anime> {
         val page = params.key ?: 1
 
         return try {
-            val animeResponse = animeApi.getTopAnime(page = page)
+            val animeResponse = animeApi.searchAnime(page = page, searchQuery = searchQuery)
 
             LoadResult.Page(
                 data = animeResponse.data,
@@ -28,12 +34,4 @@ class AnimePagingSource(
             )
         }
     }
-
-    override fun getRefreshKey(state: PagingState<Int, Anime>): Int? {
-        return state.anchorPosition?.let { anchorPosition ->
-            val anchorPage = state.closestPageToPosition(anchorPosition)
-            anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
-        }
-    }
-
 }

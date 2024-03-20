@@ -1,6 +1,6 @@
 package com.example.jumping_minds_assignment.domain.models
 
-data class Data(
+data class Anime(
     val aired: Aired?,
     val airing: Boolean?,
     val approved: Boolean?,

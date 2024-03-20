@@ -24,14 +24,14 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.jumping_minds_assignment.R
-import com.example.jumping_minds_assignment.domain.models.Data
+import com.example.jumping_minds_assignment.domain.models.Anime
 import com.example.jumping_minds_assignment.presentation.Dimens.MediumPadding1
 import com.example.jumping_minds_assignment.ui.theme.Jumping_minds_assignmentTheme
 
 @Composable
 fun AnimeListTile(
     modifier: Modifier = Modifier,
-    animeData: Data,
+    animeData: Anime,
     onClick: (() -> Unit)? = null
 ) {
 

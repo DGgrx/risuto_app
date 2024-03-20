@@ -6,11 +6,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
-import androidx.paging.compose.collectAsLazyPagingItems
-import com.example.jumping_minds_assignment.presentation.home.HomeScreen
-import com.example.jumping_minds_assignment.presentation.home.HomeViewModel
 import com.example.jumping_minds_assignment.presentation.onboarding.OnBoardingScreen
 import com.example.jumping_minds_assignment.presentation.onboarding.OnBoardingViewModel
+import com.example.jumping_minds_assignment.presentation.search.SearchScreen
+import com.example.jumping_minds_assignment.presentation.search.SearchViewModel
 
 @Composable
 fun NavGraph(
@@ -35,15 +34,19 @@ fun NavGraph(
             startDestination = Route.AnimeNavigationScreen.route
         ) {
             composable(route = Route.AnimeNavigationScreen.route) {
-                val viewModel : HomeViewModel = hiltViewModel()
-                val animes = viewModel.topAnimes.collectAsLazyPagingItems()
-                HomeScreen(
-                    animes = animes,
-//                    state = ,
-//                    event = ,
-                    navigateToSearch = { },
-                    navigateToDetails = {}
-                )
+//                val viewModel : HomeViewModel = hiltViewModel()
+//                val animes = viewModel.topAnimes.collectAsLazyPagingItems()
+//                HomeScreen(
+//                    animes = animes,
+////                    state = ,
+////                    event = ,
+//                    navigateToSearch = { },
+//                    navigateToDetails = {}
+//                )
+
+                val viewModel: SearchViewModel = hiltViewModel()
+                SearchScreen(searchState = viewModel.state.value, event = viewModel::onEvent)
+
             }
         }
 

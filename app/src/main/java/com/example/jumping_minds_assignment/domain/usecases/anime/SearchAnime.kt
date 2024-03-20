@@ -5,10 +5,10 @@ import com.example.jumping_minds_assignment.domain.models.Anime
 import com.example.jumping_minds_assignment.domain.repository.AnimeRepository
 import kotlinx.coroutines.flow.Flow
 
-class GetTopAnime(
+class SearchAnime(
     private val animeRepository: AnimeRepository
 ) {
-    operator fun invoke(): Flow<PagingData<Anime>> {
-        return animeRepository.getTopAnimes()
+    operator fun invoke(searchQuery:String): Flow<PagingData<Anime>> {
+        return animeRepository.searchAnime(searchQuery = searchQuery)
     }
 }
