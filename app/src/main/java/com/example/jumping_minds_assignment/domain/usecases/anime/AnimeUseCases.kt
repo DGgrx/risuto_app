@@ -5,6 +5,8 @@ data class AnimeUseCases(
     val getFavouriteAnime: GetFavouriteAnime,
     val searchAnime: SearchAnime,
     val markAsFavAnime: MarkAsFavAnime,
-    val deleteAnime: DeleteAnime
+    val deleteAnime: DeleteAnime,
+    val insertAnime: InsertAnime,
+    val getFavAnimeByID: GetFavAnimeByID
 )
 

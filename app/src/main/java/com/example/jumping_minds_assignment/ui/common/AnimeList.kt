@@ -20,6 +20,8 @@ fun AnimeList(
     animes: List<Anime>,
     onClick: (Anime) -> Unit
 ) {
+
+
     if (animes.isEmpty()) {
         EmptyScreen()
     }
@@ -45,11 +47,11 @@ fun AnimeList(
 fun AnimeList(
     modifier: Modifier = Modifier,
     animes: LazyPagingItems<Anime>,
-    onClick: (Anime) -> Unit
+    onClick: (Anime) -> Unit,
+
 ) {
 
     val handlePagingResult = handlePagingResult(animes)
-
 
     if (handlePagingResult) {
         LazyColumn(

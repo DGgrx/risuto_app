@@ -13,6 +13,10 @@ interface AnimeDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(anime: Anime)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAll(anime: List<Anime>)
+
     @Delete
     suspend fun delete(anime: Anime)
 
@@ -22,8 +26,11 @@ interface AnimeDao {
     @Query("SELECT * FROM anime WHERE isFavourite = 1")
     fun getFavoriteAnime(): Flow<List<Anime>>
 
+    @Query("SELECT * FROM anime WHERE isFavourite = 1 AND mal_id = :mal_id")
+    suspend fun getFavAnimeByID(mal_id: Int): Anime
 
-
+    @Query("SELECT * FROM anime")
+    suspend fun getAllAnime(): List<Anime>
 
 
 }

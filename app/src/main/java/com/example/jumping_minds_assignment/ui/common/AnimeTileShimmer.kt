@@ -80,12 +80,3 @@ fun AnimeCardShimmerEffect(modifier: Modifier = Modifier) {
         }
     }
 }
-//
-//@Preview(showBackground = true, showSystemUi = true)
-//@Preview(uiMode = UI_MODE_NIGHT_YES, showBackground = true, showSystemUi = true)
-//@Composable
-//fun AnimeCardShimmerEffectPreview() {
-//    Jumping_minds_assignmentTheme {
-//        AnimeCardShimmerEffect()
-//    }
-//}

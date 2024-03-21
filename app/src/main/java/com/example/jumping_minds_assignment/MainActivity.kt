@@ -1,5 +1,7 @@
 package com.example.jumping_minds_assignment
 
+import android.content.IntentFilter
+import android.net.ConnectivityManager
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -16,6 +18,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import com.example.jumping_minds_assignment.ui.navgraph.NavGraph
 import com.example.jumping_minds_assignment.ui.theme.Jumping_minds_assignmentTheme
+import com.example.jumping_minds_assignment.utils.NetworkChangeReceiver
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -23,10 +26,13 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
+
     private val viewModel by viewModels<MainActivityViewModel>()
+    private lateinit var networkReceiver: NetworkChangeReceiver
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
@@ -38,6 +44,7 @@ class MainActivity : ComponentActivity() {
 
 
         setContent {
+
             Jumping_minds_assignmentTheme {
 
                 val isSystemInDarkMode = isSystemInDarkTheme()
@@ -59,6 +66,19 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+        // Instantiate the receiver
+        networkReceiver = NetworkChangeReceiver()
+
+        // Register the receiver
+        val filter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
+        registerReceiver(networkReceiver, filter)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        // Unregister the receiver when the activity is destroyed
+        unregisterReceiver(networkReceiver)
     }
 }
 

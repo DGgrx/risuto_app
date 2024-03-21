@@ -73,9 +73,10 @@ fun SearchBar(
             shape = MaterialTheme.shapes.medium,
             singleLine = true,
             colors = TextFieldDefaults.colors(
-                focusedContainerColor = Color.Transparent,
-                unfocusedContainerColor = Color.Transparent,
-                errorContainerColor = Color.Transparent
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent,
+                disabledIndicatorColor = Color.Transparent,
+
             ),
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
             keyboardActions = KeyboardActions(
@@ -100,14 +101,3 @@ fun Modifier.searchBar(): Modifier = composed {
         this
     }
 }
-
-//@Preview(showBackground = true)
-//@Preview(showBackground = true, uiMode = UI_MODE_NIGHT_YES)
-//@Composable
-//fun SearchBarPreview() {
-//    Jumping_minds_assignmentTheme {
-//        SearchBar(text = "", onValueChange = {}, readOnly = false) {
-//
-//        }
-//    }
-//}

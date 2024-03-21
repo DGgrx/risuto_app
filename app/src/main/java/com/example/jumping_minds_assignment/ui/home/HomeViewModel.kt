@@ -21,5 +21,4 @@ class HomeViewModel @Inject constructor(
     val state : State<HomeState> = _state
 
 
-    fun onEvent(event : HomeEvent){}
 }

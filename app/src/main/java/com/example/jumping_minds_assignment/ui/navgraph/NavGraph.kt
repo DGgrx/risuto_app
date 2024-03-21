@@ -33,18 +33,6 @@ fun NavGraph(
             startDestination = Route.AnimeNavigationScreen.route
         ) {
             composable(route = Route.AnimeNavigationScreen.route) {
-//                val viewModel : HomeViewModel = hiltViewModel()
-//                val animes = viewModel.topAnimes.collectAsLazyPagingItems()
-//                HomeScreen(
-//                    animes = animes,
-////                    state = ,
-////                    event = ,
-//                    navigateToSearch = { },
-//                    navigateToDetails = {}
-//                )
-
-//                val viewModel: SearchViewModel = hiltViewModel()
-//                SearchScreen(searchState = viewModel.state.value, event = viewModel::onEvent)
                 AnimeNavigator()
             }
         }

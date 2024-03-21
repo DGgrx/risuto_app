@@ -18,6 +18,10 @@ class FavouritesViewModel @Inject constructor(
     private val _state = mutableStateOf(FavouritesState())
     val state : State<FavouritesState> = _state
 
+    init{
+        getFavArticles()
+    }
+
     private fun getFavArticles(){
         animeUseCases.getFavouriteAnime().onEach{
             _state.value = _state.value.copy(favAnimes = it)

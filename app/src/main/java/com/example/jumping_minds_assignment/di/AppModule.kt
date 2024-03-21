@@ -12,8 +12,10 @@ import com.example.jumping_minds_assignment.domain.manager.LocalUserManger
 import com.example.jumping_minds_assignment.domain.repository.AnimeRepository
 import com.example.jumping_minds_assignment.domain.usecases.anime.AnimeUseCases
 import com.example.jumping_minds_assignment.domain.usecases.anime.DeleteAnime
+import com.example.jumping_minds_assignment.domain.usecases.anime.GetFavAnimeByID
 import com.example.jumping_minds_assignment.domain.usecases.anime.GetFavouriteAnime
 import com.example.jumping_minds_assignment.domain.usecases.anime.GetTopAnime
+import com.example.jumping_minds_assignment.domain.usecases.anime.InsertAnime
 import com.example.jumping_minds_assignment.domain.usecases.anime.MarkAsFavAnime
 import com.example.jumping_minds_assignment.domain.usecases.anime.SearchAnime
 import com.example.jumping_minds_assignment.domain.usecases.app_entry.AppEntryUseCases
@@ -59,17 +61,8 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun providesAnimeRepository(animeApi: AnimeApi): AnimeRepository =
-        AnimeRepositoryImpl(animeApi = animeApi)
-
-//    @Provides
-//    @Singleton
-//    fun providesAnimeUseCases(animeRepository: AnimeRepository): AnimeUseCases {
-//        return AnimeUseCases(
-//            getTopAnime = GetTopAnime(animeRepository = animeRepository),
-//            searchAnime = SearchAnime(animeRepository = animeRepository)
-//        )
-//    }
+    fun providesAnimeRepository(animeApi: AnimeApi,animeDao: AnimeDao): AnimeRepository =
+        AnimeRepositoryImpl(animeApi = animeApi, animeDao = animeDao)
 
 
     @Provides
@@ -79,14 +72,18 @@ class AppModule {
         searchAnime: SearchAnime,
         deleteAnime: DeleteAnime,
         getFavouriteAnime: GetFavouriteAnime,
-        markAsFavAnime: MarkAsFavAnime
+        markAsFavAnime: MarkAsFavAnime,
+        insertAnime: InsertAnime,
+        getFavAnimeByID: GetFavAnimeByID
     ): AnimeUseCases {
         return AnimeUseCases(
             getTopAnime = getTopAnime,
             searchAnime = searchAnime,
             deleteAnime = deleteAnime,
             markAsFavAnime = markAsFavAnime,
-            getFavouriteAnime = getFavouriteAnime
+            getFavouriteAnime = getFavouriteAnime,
+            insertAnime = insertAnime,
+            getFavAnimeByID = getFavAnimeByID
         )
     }
 
@@ -122,6 +119,20 @@ class AppModule {
 
     @Provides
     @Singleton
+    fun providesInsertAnime(animeDao: AnimeDao): InsertAnime {
+        return InsertAnime(animeDao)
+    }
+
+    @Provides
+    @Singleton
+    fun providesGetFavAnimeByID(animeDao: AnimeDao): GetFavAnimeByID {
+        return GetFavAnimeByID(animeDao)
+    }
+
+
+
+    @Provides
+    @Singleton
     fun providesAnimeDatabase(
         application: Application
     ): AnimeDatabase {
@@ -133,6 +144,7 @@ class AppModule {
             .fallbackToDestructiveMigration()
             .build()
     }
+
 
     @Provides
     @Singleton

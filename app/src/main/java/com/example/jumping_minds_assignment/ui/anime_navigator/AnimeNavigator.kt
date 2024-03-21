@@ -23,6 +23,7 @@ import com.example.jumping_minds_assignment.domain.models.Anime
 import com.example.jumping_minds_assignment.ui.anime_navigator.components.AnimeBottomNavigation
 import com.example.jumping_minds_assignment.ui.anime_navigator.components.BottomNavigationItem
 import com.example.jumping_minds_assignment.ui.details.AnimeDetailsScreen
+import com.example.jumping_minds_assignment.ui.details.AnimeDetailsViewModel
 import com.example.jumping_minds_assignment.ui.favourites.FavouritesScreen
 import com.example.jumping_minds_assignment.ui.favourites.FavouritesViewModel
 import com.example.jumping_minds_assignment.ui.home.HomeScreen
@@ -45,10 +46,10 @@ fun AnimeNavigator() {
     val navController = rememberNavController()
     val backStackState = navController.currentBackStackEntryAsState().value
     var selectedItem by rememberSaveable {
-        mutableStateOf(1)
+        mutableStateOf(0)
     }
 
-    selectedItem = remember(key1 = backStackState){
+    selectedItem = remember(key1 = backStackState) {
         when (backStackState?.destination?.route) {
             Route.HomeScreen.route -> 0
             Route.SearchScreen.route -> 1
@@ -113,9 +114,7 @@ fun AnimeNavigator() {
                             navController = navController,
                             anime = anime
                         )
-                    },
-                    event = viewModel::onEvent,
-                    state = viewModel.state.value
+                    }
                 )
             }
             composable(route = Route.SearchScreen.route) {
@@ -135,15 +134,16 @@ fun AnimeNavigator() {
             }
 
             composable(route = Route.DetailsScreen.route) {
-//                val viewModel: AnimeDetailsView = hiltViewModel()
+                val viewModel: AnimeDetailsViewModel = hiltViewModel()
                 navController.previousBackStackEntry?.savedStateHandle?.get<Anime?>("anime")
                     ?.let { anime ->
                         AnimeDetailsScreen(
                             anime = anime,
-//                            event = viewModel::onEvent,
+                            event = viewModel::onEvent,
                             navigateUp = { navController.navigateUp() },
-//                            sideEffect = viewModel.sideEffect
+                            sideEffect = viewModel.sideEffect
                         )
+
                     }
 
             }
@@ -191,7 +191,7 @@ private fun navigateToTab(navController: NavController, route: String) {
 }
 
 private fun navigateToDetails(navController: NavController, anime: Anime) {
-    navController.currentBackStackEntry?.savedStateHandle?.set("anime",anime)
+    navController.currentBackStackEntry?.savedStateHandle?.set("anime", anime)
     navController.navigate(
         route = Route.DetailsScreen.route
     )
