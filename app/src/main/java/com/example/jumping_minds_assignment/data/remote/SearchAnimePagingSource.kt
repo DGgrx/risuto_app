@@ -23,7 +23,7 @@ class SearchAnimePagingSource (
 
             LoadResult.Page(
                 data = animeResponse.data,
-                nextKey = if(animeResponse.pagination.has_next_page) page + 1 else null,
+                nextKey = if(animeResponse.pagination.has_next_page == true) page + 1 else null,
                 prevKey = if (animeResponse.pagination.current_page == 1) null else page - 1
             )
 

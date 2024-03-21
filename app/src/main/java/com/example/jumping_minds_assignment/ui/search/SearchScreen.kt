@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.paging.compose.collectAsLazyPagingItems
+import com.example.jumping_minds_assignment.domain.models.Anime
 import com.example.jumping_minds_assignment.ui.Dimens.MediumPadding1
 import com.example.jumping_minds_assignment.ui.common.AnimeList
 import com.example.jumping_minds_assignment.ui.common.SearchBar
@@ -15,7 +16,8 @@ import com.example.jumping_minds_assignment.ui.common.SearchBar
 @Composable
 fun SearchScreen(
     searchState: SearchState,
-    event: (SearchEvent)->Unit
+    event: (SearchEvent)->Unit,
+    navigateToDetails: (Anime)-> Unit
 ) {
     Column(
         modifier = Modifier
@@ -35,7 +37,7 @@ fun SearchScreen(
             val animes = it.collectAsLazyPagingItems()
             AnimeList(
                 animes = animes,
-                onClick = {}
+                onClick = navigateToDetails
             )
         }
     }

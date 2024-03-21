@@ -7,5 +7,8 @@ import kotlinx.coroutines.flow.Flow
 interface AnimeRepository {
     fun getTopAnimes() : Flow<PagingData<Anime>>
 
+    
     fun searchAnime(searchQuery:String) : Flow<PagingData<Anime>>
+
+
 }

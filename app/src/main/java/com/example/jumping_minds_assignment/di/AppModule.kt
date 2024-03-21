@@ -11,7 +11,10 @@ import com.example.jumping_minds_assignment.data.repository.AnimeRepositoryImpl
 import com.example.jumping_minds_assignment.domain.manager.LocalUserManger
 import com.example.jumping_minds_assignment.domain.repository.AnimeRepository
 import com.example.jumping_minds_assignment.domain.usecases.anime.AnimeUseCases
+import com.example.jumping_minds_assignment.domain.usecases.anime.DeleteAnime
+import com.example.jumping_minds_assignment.domain.usecases.anime.GetFavouriteAnime
 import com.example.jumping_minds_assignment.domain.usecases.anime.GetTopAnime
+import com.example.jumping_minds_assignment.domain.usecases.anime.MarkAsFavAnime
 import com.example.jumping_minds_assignment.domain.usecases.anime.SearchAnime
 import com.example.jumping_minds_assignment.domain.usecases.app_entry.AppEntryUseCases
 import com.example.jumping_minds_assignment.domain.usecases.app_entry.ReadAppEntry
@@ -71,10 +74,19 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun providesAnimeUseCases(getTopAnime: GetTopAnime, searchAnime: SearchAnime): AnimeUseCases {
+    fun providesAnimeUseCases(
+        getTopAnime: GetTopAnime,
+        searchAnime: SearchAnime,
+        deleteAnime: DeleteAnime,
+        getFavouriteAnime: GetFavouriteAnime,
+        markAsFavAnime: MarkAsFavAnime
+    ): AnimeUseCases {
         return AnimeUseCases(
             getTopAnime = getTopAnime,
-            searchAnime = searchAnime
+            searchAnime = searchAnime,
+            deleteAnime = deleteAnime,
+            markAsFavAnime = markAsFavAnime,
+            getFavouriteAnime = getFavouriteAnime
         )
     }
 
@@ -90,6 +102,23 @@ class AppModule {
         return SearchAnime(animeRepository)
     }
 
+    @Provides
+    @Singleton
+    fun providesGetFavouriteAnime(animeDao: AnimeDao): GetFavouriteAnime {
+        return GetFavouriteAnime(animeDao)
+    }
+
+    @Provides
+    @Singleton
+    fun providesMarkAsFavAnime(animeDao: AnimeDao): MarkAsFavAnime {
+        return MarkAsFavAnime(animeDao)
+    }
+
+    @Provides
+    @Singleton
+    fun providesDeleteAnime(animeDao: AnimeDao): DeleteAnime {
+        return DeleteAnime(animeDao)
+    }
 
     @Provides
     @Singleton
@@ -109,6 +138,6 @@ class AppModule {
     @Singleton
     fun providesAnimeDao(
         animeDatabase: AnimeDatabase
-    ):AnimeDao = animeDatabase.animeDao
+    ): AnimeDao = animeDatabase.animeDao
 
 }

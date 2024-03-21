@@ -55,7 +55,7 @@ class AnimeTypeConverter {
 
     @TypeConverter
     fun trailerToString(source: Trailer) :String{
-        return "${source.url},${source.embed_url},${source.images.maximum_image_url},${source.youtube_id}"
+        return "${source.url},${source.embed_url},${source.images?.maximum_image_url},${source.youtube_id}"
     }
 
     @TypeConverter

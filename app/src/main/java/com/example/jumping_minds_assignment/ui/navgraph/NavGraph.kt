@@ -6,10 +6,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
+import com.example.jumping_minds_assignment.ui.anime_navigator.AnimeNavigator
 import com.example.jumping_minds_assignment.ui.onboarding.OnBoardingScreen
 import com.example.jumping_minds_assignment.ui.onboarding.OnBoardingViewModel
-import com.example.jumping_minds_assignment.ui.search.SearchScreen
-import com.example.jumping_minds_assignment.ui.search.SearchViewModel
 
 @Composable
 fun NavGraph(
@@ -44,9 +43,9 @@ fun NavGraph(
 //                    navigateToDetails = {}
 //                )
 
-                val viewModel: SearchViewModel = hiltViewModel()
-                SearchScreen(searchState = viewModel.state.value, event = viewModel::onEvent)
-
+//                val viewModel: SearchViewModel = hiltViewModel()
+//                SearchScreen(searchState = viewModel.state.value, event = viewModel::onEvent)
+                AnimeNavigator()
             }
         }
 

@@ -33,8 +33,8 @@ fun AnimeList(
         ) {
             animes[it]?.let { anime ->
                 AnimeListTile(
-                    animeData = anime,)
-//                    onClick = { onClick(ainme) })
+                    animeData = anime,
+                    onClick = { onClick(anime) })
             }
         }
     }
@@ -63,7 +63,7 @@ fun AnimeList(
                 animes[it]?.let { anime ->
                     AnimeListTile(
                         animeData = anime,
-//                        onClick = { onClick(anime) }
+                        onClick = { onClick(anime) }
                     )
                 }
             }

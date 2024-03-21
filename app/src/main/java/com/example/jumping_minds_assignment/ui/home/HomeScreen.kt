@@ -23,28 +23,16 @@ import com.example.jumping_minds_assignment.ui.common.SearchBar
 @Composable
 fun HomeScreen(
     animes: LazyPagingItems<Anime>,
-//    state: HomeState,
-//    event: (HomeEvent) -> Unit,
+    state: HomeState,
+    event: (HomeEvent) -> Unit,
     navigateToSearch: () -> Unit,
     navigateToDetails: (Anime) -> Unit
 ) {
 
-//    val titles by remember {
-//        derivedStateOf {
-//            if (articles.itemCount > 10) {
-//                articles.itemSnapshotList.items
-//                    .slice(IntRange(start = 0, endInclusive = 9))
-//                    .joinToString(separator = " \uD83D\uDFE5 ") { it.title }
-//            } else {
-//                ""
-//            }
-//        }
-//    }
-
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(top = MediumPadding1/2)
+            .padding(top = MediumPadding1 / 2)
             .statusBarsPadding()
     ) {
         Image(
@@ -69,48 +57,12 @@ fun HomeScreen(
             onClick = navigateToSearch
         )
 
-        Spacer(modifier = Modifier.height(MediumPadding1/2))
-
-//        val scrollState = rememberScrollState(initial = state.scrollValue)
-
-//        Text(
-//            text = titles, modifier = Modifier
-//                .fillMaxWidth()
-//                .padding(start = MediumPadding1)
-//                .horizontalScroll(scrollState, enabled = false),
-//            fontSize = 12.sp,
-//            color = colorResource(id = R.color.placeholder)
-//        )
-
-        // Update the maxScrollingValue
-//        LaunchedEffect(key1 = scrollState.maxValue) {
-//            event(HomeEvent.UpdateMaxScrollingValue(scrollState.maxValue))
-//        }
-//        // Save the state of the scrolling position
-//        LaunchedEffect(key1 = scrollState.value) {
-//            event(HomeEvent.UpdateScrollValue(scrollState.value))
-//        }
-//        // Animate the scrolling
-//        LaunchedEffect(key1 = state.maxScrollingValue) {
-//            delay(500)
-//            if (state.maxScrollingValue > 0) {
-//                scrollState.animateScrollTo(
-//                    value = state.maxScrollingValue,
-//                    animationSpec = infiniteRepeatable(
-//                        tween(
-//                            durationMillis = (state.maxScrollingValue - state.scrollValue) * 50_000 / state.maxScrollingValue,
-//                            easing = LinearEasing,
-//                            delayMillis = 1000
-//                        )
-//                    )
-//                )
-//            }
-//        }
+        Spacer(modifier = Modifier.height(MediumPadding1 / 2))
 
         Spacer(modifier = Modifier.height(MediumPadding1))
 
         AnimeList(
-            modifier = Modifier.padding(horizontal = MediumPadding1/3),
+            modifier = Modifier.padding(horizontal = MediumPadding1 / 3),
             animes = animes,
             onClick = navigateToDetails
         )

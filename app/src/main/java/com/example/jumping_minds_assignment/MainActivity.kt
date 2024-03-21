@@ -25,11 +25,10 @@ class MainActivity : ComponentActivity() {
 
     private val viewModel by viewModels<MainActivityViewModel>()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        WindowCompat.setDecorFitsSystemWindows(window,false)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
 
         installSplashScreen().apply {
             setKeepOnScreenCondition {
@@ -50,9 +49,11 @@ class MainActivity : ComponentActivity() {
                     )
                 }
 
-                Box(modifier = Modifier
-                    .background(color = MaterialTheme.colorScheme.background)
-                    .fillMaxSize()) {
+                Box(
+                    modifier = Modifier
+                        .background(color = MaterialTheme.colorScheme.background)
+                        .fillMaxSize()
+                ) {
                     val startDestination = viewModel.startDestination
                     NavGraph(startDestination = startDestination)
                 }
